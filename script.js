@@ -80,6 +80,9 @@ function calculate(num1, num2, op) {
     else if (op === '/') {
         return num1 / num2;
     }
+    else if (op === '%') {
+        return num1 % num2;
+    }
 }
 
 
