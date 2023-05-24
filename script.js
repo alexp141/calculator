@@ -9,6 +9,7 @@ function main() {
     let acBtn = document.getElementById('ac');
     let cBtn = document.getElementById('c');
     let eqBtn = document.getElementById('equals');
+    let dotBtn = document.getElementById('dot');
 
     for (const node of nodeList) {
         if (node.classList.contains('number')) {
@@ -18,7 +19,7 @@ function main() {
                 }
                 input += e.target.value;
                 text.innerText = input;
-                lastPressed = 'number'
+                lastPressed = 'number';
             });
         }
         else if (node.classList.contains('op')) {
@@ -30,7 +31,7 @@ function main() {
                 }
                 lastPressed = 'op'
                 let inputVal = Number(input);
-                total = calculate(total, inputVal, prevOp == undefined ? currOp : prevOp);
+                total = Number(calculate(total, inputVal, prevOp == undefined ? currOp : prevOp).toFixed(8));
                 text.innerText = total;
                 input = '';
             });
@@ -40,7 +41,7 @@ function main() {
     eqBtn.addEventListener('click', e => {
         lastPressed = 'eq'
         let inputVal = Number(input);
-        total = calculate(total, inputVal, currOp);
+        total = Number(calculate(total, inputVal, currOp).toFixed(8));
         text.innerText = total;
         input = `${total}`;
     });;
@@ -57,6 +58,12 @@ function main() {
     cBtn.addEventListener('click' , e => {
         input = '';
         text.innerText = '';
+    });
+
+    dotBtn.addEventListener('click' , e => {
+        input += e.target.value;
+        text.innerText = input;
+        lastPressed = 'number';
     });
     
 }
