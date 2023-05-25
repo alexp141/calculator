@@ -1,5 +1,5 @@
 function main() {
-    let total = 0;
+    let total;
     let input = '';
     let currOp;
     let prevOp;
@@ -47,7 +47,7 @@ function main() {
     });;
 
     acBtn.addEventListener('click' , e => {
-        total = 0;
+        total = undefined;
         input = '';
         currOp = undefined;
         prevOp = undefined;
@@ -71,8 +71,10 @@ function main() {
 function calculate(num1, num2, op) {
     num1 = Number(num1);
     num2 = Number(num2);
-    if (isNaN(num1) || isNaN(num2)) {
-        return 'ERROR NaN';
+    
+    //num1 is NaN when total = undefined
+    if (isNaN(num1)) {
+        return num2;
     }
 
     if (op === '+') {
